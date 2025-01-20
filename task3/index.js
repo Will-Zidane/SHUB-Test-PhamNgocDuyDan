@@ -29,10 +29,13 @@ async function calculateArrayRanges(inputUrl, outputUrl) {
             // Tính tổng hoặc tổng lẻ chẵn
             if (type === "1") {
                 return subArray.reduce((sum, num) => sum + num, 0);
-            } else if (type === "2") {
+            } 
+            if (type === "2") {
                 return subArray.reduce((sum, num, idx) => {
-                    return sum + (idx % 2 === 0 ? num : -num);
+                    const position = l + idx; // Vị trí tuyệt đối trong mảng gốc
+                    return sum + (position % 2 === 0 ? num : -num);
                 }, 0);
+            
             } else {
                 console.warn(`Skipping invalid query type at index ${index}:`, type);
                 return null; // Bỏ qua query không hợp lệ
